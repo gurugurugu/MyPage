@@ -1,6 +1,6 @@
 import React from "react";
 import { services, serviceFinishes } from "../Data";
-const Services = () => {
+const Services = (props) => {
   return (
     <div className="section" id="services">
       <div className="mb-8">

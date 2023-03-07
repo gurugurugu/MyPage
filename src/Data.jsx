@@ -120,7 +120,7 @@ import axios from 'axios'
 
 
   
-const getserviceFinishes = await axios.post(import.meta.env.VITE_APP_BACKEND_URL + `/db/serviceinfo`).then(res=>{  
+const getserviceFinishes = await axios.post(`https://mypage-server-9c0z.onrender.com/db/serviceinfo`).then(res=>{  
   console.log(res.data)
   res.data[0].icon = <BsHeart />
   res.data[1].icon = <BsWatch />
@@ -180,7 +180,7 @@ export const projects = [
 
 
 
-const getblog= await axios.post(import.meta.env.VITE_APP_BACKEND_URL + `/db/blog`).then(res=>{  
+const getblog= await axios.post(`https://mypage-server-9c0z.onrender.com/db/blog`).then(res=>{  
   res.data[0].image = blog1
   res.data[1].image = blog2
   return res.data})

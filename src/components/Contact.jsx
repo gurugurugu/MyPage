@@ -18,7 +18,7 @@ const Contact = () => {
   const postData = (e) =>{
     e.preventDefault();
     
-    axios.post(import.meta.env.VITE_APP_BACKEND_URL + `/db/contactinfo`,{
+    axios.post(`https://mypage-server-9c0z.onrender.com/db/contactinfo`,{
       name,
       email,
       textbox}).then((res) => {
