@@ -1,7 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { contacts } from "../Data";
+import { useState, useContext } from 'react';
+
+import axios from 'axios';
+import Popup from "./Popup";
+
 
 const Contact = () => {
+  const [name, setName] = useState('')
+  const [email, setemail] = useState('')
+  const [textbox, settextbox] = useState('')
+  const [popup, setpopup] = useState(false)
+
+
+
+
+  const postData = (e) =>{
+    e.preventDefault();
+    
+    axios.post(import.meta.env.VITE_APP_BACKEND_URL + `/db/contactinfo`,{
+      name,
+      email,
+      textbox}).then((res) => {
+        console.log(res.data)
+        setpopup(true)
+        console.log(popup)
+        setName('')
+        setemail('')
+        settextbox('')
+
+    
+    }).catch()
+
+
+    
+
+  }
+
+  
   return (
     <div className="container mx-auto mb-7 px-6" id="contact">
       <div className="mb-8">
@@ -21,38 +57,46 @@ const Contact = () => {
           })}
         </div>
         <div className="mt-8 flex  gap-12 flex-wrap justify-center">
-          <div>
-            <div className="mb-5">
-              <input
-                type="text"
-                className="outline-none bg-transparent border border-solid border-blue p-2 text-[0.9rem]"
-                placeholder="Name"
-              />
+          <form>
+            <div>
+              <div className="mb-5">
+                <input type="text" 
+                  className="outline-none bg-transparent border border-solid border-blue p-2 text-[0.9rem]"
+                  placeholder="Name"
+                  value={name} 
+                  onChange={(e)=> setName(e.target.value)}/>
+              </div>
+              <div className="mb-5">
+                <input type="text" 
+                      className="outline-none bg-transparent border border-solid border-blue p-2 text-[0.9rem]"
+                      placeholder="email"
+                      value={email} 
+                      onChange={(e)=> setemail(e.target.value)}/>
+              </div>
             </div>
-            <div className="mb-5">
-              <input
-                type="text"
-                className="outline-none bg-transparent border border-solid border-blue p-2 text-[0.9rem]"
-                placeholder="Email"
-              />
-            </div>
-
-          </div>
-          <div>
-            <textarea
+            <div>
+              <textarea 
+              type="text" 
               placeholder="Contact me"
               className="outline-none bg-transparent border border-solid border-blue resize-none text-[0.9rem] p-2 h-40 w-80"
-            ></textarea>
-            <div className="mt-2 text-end">
-              <a href="" className="text-[0.9rem] text-blue">
-                Send message
-              </a>
+              value={textbox} 
+              onChange={(e)=> settextbox(e.target.value)}></textarea>
+                <div className="mt-2 text-end">
+                  <button className="btn-primary" onClick={postData}>POST</button>
+                </div>
             </div>
-          </div>
+
+          </form>
         </div>
       </div>
+      <div>
+            <Popup trigger={popup} onClose={()=>setpopup(false)}/>
+        </div>
     </div>
+
   );
 };
 
 export default Contact;
+
+

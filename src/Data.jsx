@@ -17,9 +17,7 @@ import blog2 from "./assets/blog2.jpg";
 import blog3 from "./assets/blog3.jpg";
 import blog4 from "./assets/blog4.jpg";
 
-import testimonial1 from "./assets/testimonial1.jpg";
-import testimonial2 from "./assets/testimonial2.jpg";
-import testimonial3 from "./assets/testimonial3.jpg";
+
 
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
@@ -79,37 +77,61 @@ export const services = [
   },
   {
     id: 4,
-    icon: <TbSpeakerphone />,
+    icon: <TbSpeakerphone/>,
     title: "Now",
     context:""
   },
 ];
-export const serviceFinishes = [
-  {
-    id: 1,
-    icon: <BsHeart />,
-    text: "Happy Clients",
-    amount: 566,
-  },
-  {
-    id: 2,
-    icon: <BsWatch />,
-    text: "Working Hours",
-    amount: 5335,
-  },
-  {
-    id: 3,
-    icon: <BsStar />,
-    text: "Awards Won",
-    amount: 2,
-  },
-  {
-    id: 4,
-    icon: <BiCoffeeTogo />,
-    text: "Coffee",
-    amount: 1189,
-  },
-];
+// export const serviceFinishes = [
+//   {
+//     id: 1,
+//     icon: <BsHeart />,
+//     text: "Happy Clients",
+//     amount: 566,
+//   },
+//   {
+//     id: 2,
+//     icon: <BsWatch />,
+//     text: "Working Hours",
+//     amount: 5335,
+//   },
+//   {
+//     id: 3,
+//     icon: <BsStar />,
+//     text: "Awards Won",
+//     amount: 2,
+//   },
+//   {
+//     id: 4,
+//     icon: <BiCoffeeTogo />,
+//     text: "Coffee",
+//     amount: 1189,
+//   },
+
+import React, { useRef, useState, useEffect } from 'react';
+import axios from 'axios'
+// useEffect(() => {
+//   Axios.post('http://127.0.0.1:3008/db/serviceinfo').then(res=>{
+//     console.log("Getting from ::::", res.data)
+//     setImmediate(res.data)
+//   }).catch(err => console.log(err))
+
+// }, [])
+
+
+  
+const getserviceFinishes = await axios.post(import.meta.env.VITE_APP_BACKEND_URL + `/db/serviceinfo`).then(res=>{  
+  console.log(res.data)
+  res.data[0].icon = <BsHeart />
+  res.data[1].icon = <BsWatch />
+  res.data[2].icon = <BsShop />
+  res.data[3].icon = <BiCoffeeTogo />
+  return res.data})
+
+  
+export const serviceFinishes = getserviceFinishes;
+
+
 export const btns = [
   { id: 1, name: "All", value: "all" },
   { id: 2, name: "UI/UX", value: "ui/ux" },
@@ -155,49 +177,42 @@ export const projects = [
   },
 ];
 
-export const blogs = [
-  {
-    id: 1,
-    image: blog1,
-    title: "What Skills Do You Need for Marketing in 2023?",
-  },
-  {
-    id: 2,
-    image: blog2,
-    title: "What is Web Design? A Comprehensive Guide",
-  },
-  {
-    id: 3,
-    image: blog3,
-    title: "100 Best Web Design Blogs You Must Read in 2023",
-  },
-  {
-    id: 4,
-    image: blog4,
-    title: "How to Learn Web Design at Home",
-  },
-];
 
-export const testimonials = [
-  {
-    id: 1,
-    image: testimonial1,
-    name: "Billy Adams",
-    business: "Rolling Thunder",
-  },
-  {
-    id: 2,
-    image: testimonial2,
-    name: "Gary Jhonson",
-    business: "Car Accessories",
-  },
-  {
-    id: 3,
-    image: testimonial3,
-    name: "Venissa",
-    business: "Fashin Shop",
-  },
-];
+
+
+const getblog= await axios.post(import.meta.env.VITE_APP_BACKEND_URL + `/db/blog`).then(res=>{  
+  res.data[0].image = blog1
+  res.data[1].image = blog2
+  return res.data})
+
+
+export const blogs = getblog;
+
+
+// export const blogs = [
+//   {
+//     id: 1,
+//     image: blog1,
+//     title: "What Skills Do You Need for Marketing in 2023?",
+//   },
+//   {
+//     id: 2,
+//     image: blog2,
+//     title: "What is Web Design? A Comprehensive Guide",
+//   },
+//   {
+//     id: 3,
+//     image: blog3,
+//     title: "100 Best Web Design Blogs You Must Read in 2023",
+//   },
+//   {
+//     id: 4,
+//     image: blog4,
+//     title: "How to Learn Web Design at Home",
+//   },
+// ];
+
+
 
 export const contacts = [
   {

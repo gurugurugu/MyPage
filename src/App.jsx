@@ -6,16 +6,19 @@ import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import ScrollToTop from "./components/ScrollToTop";
 import Services from "./components/Services";
-import Testimonials from "./components/Testimonials";
+import Popup from "./components/Popup";
+import {useState} from "react";
 
 function App() {
+
+
   return (
     <div className="font-Poppins bg-ghostWhite">
       <Navbar />
       <Home />
       <Services />
       <Blog />
-      <Contact />
+      <Contact  />
       <Footer />
       <ScrollToTop />
     </div>

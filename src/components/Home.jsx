@@ -26,7 +26,7 @@ const Home = () => {
           </p>
           <div className="flex mt-4 gap-4">
             <a
-              href=""
+              href="https://drive.google.com/uc?export=download&id=1DT8iTgED5VITuucmUt_SFSeh0dhkjCmI"
               className="py-2 px-4 border-[2px] border-solid border-blue text-[0.9rem] rounded-[2.2rem] shadow-md"
             >
               Download Resume
